@@ -1,0 +1,11 @@
+<app-header></app-header>
+<div *ngIf="role==='admin'">
+    <app-admin></app-admin>
+</div>
+<div *ngIf="role==='player'">
+    <app-player></app-player>
+</div>
+<div *ngIf="role==='supervisor'">
+    <app-supervisor></app-supervisor>
+</div>
+<app-footer></app-footer>

@@ -1,0 +1,7 @@
+{"_id":{"$oid":"5d87b4f6d7eb695d01a741d4"},"_userId":{"$oid":"5d87b0f6d7eb695d01a74150"},"value":"nigerija","type":"country","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d87b4f6d7eb695d01a741d5"},"_userId":{"$oid":"5d87b0f6d7eb695d01a74150"},"value":"nica","type":"city","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d87b64ed7eb695d01a741f8"},"_userId":{"$oid":"5d87b148d7eb695d01a74156"},"value":"grac","type":"city","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d87b64ed7eb695d01a741f9"},"_userId":{"$oid":"5d87b148d7eb695d01a74156"},"value":"goc","type":"mountain","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d8889678facdb65abeb8f01"},"_userId":{"$oid":"5d8887dc8facdb65abeb8eb6"},"value":"turska","type":"country","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d8889678facdb65abeb8f02"},"_userId":{"$oid":"5d8887dc8facdb65abeb8eb6"},"value":"talin","type":"city","__v":{"$numberInt":"0"}}
+{"_id":{"$oid":"5d8889678facdb65abeb8f03"},"_userId":{"$oid":"5d8887dc8facdb65abeb8eb6"},"value":"tara","type":"river","__v":{"$numberInt":"0"}}

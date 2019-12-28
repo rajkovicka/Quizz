@@ -1,0 +1,33 @@
+<app-header></app-header>
+<div class="centered-content">
+    <div class="white-box">
+        <h1 class="title has-text-primary">Score</h1>
+        <div *ngIf="noScore">
+            No score today.
+        </div>
+        <div *ngIf="notFinished">
+            Finish all the games first.
+        </div>
+       <div *ngIf="!noScore && !notFinished">
+            <div>
+                Anagram: {{todayScore.anagram}}
+            </div>
+            <div>
+                Game 5x5: {{todayScore.game5x5}}
+            </div>
+            <div>
+                My Number: {{todayScore.myNumber}}
+            </div>
+            <div>
+                Fun geography: {{todayScore.geography}}
+            </div>
+            <div>
+                Goblet: {{todayScore.goblet}}
+            </div>
+            <div>
+                Total score: {{todayScore.score}}
+            </div>
+       </div>
+    </div>
+</div>
+<app-footer></app-footer>

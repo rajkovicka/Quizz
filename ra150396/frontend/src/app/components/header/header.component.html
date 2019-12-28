@@ -1,0 +1,17 @@
+<div class="navigation">
+    <div class="game-logo">
+        <h3 class="game">
+            <a href="/home">
+                ETF quiz
+            </a>
+        </h3>
+    </div>
+    <div *ngIf="!isLoggedIn" class="authenticate">
+        <span routerLink='/login'>Login</span>
+        <span routerLink='/signup'>Signup</span>
+    </div>
+    <div *ngIf="isLoggedIn" class="logout">
+        <span routerLink='/changePassword'>Change password</span>
+        <span (click)="onLogoutClicked()">Logout</span>
+    </div>
+</div>

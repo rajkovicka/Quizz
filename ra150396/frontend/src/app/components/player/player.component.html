@@ -1,0 +1,48 @@
+<div class="centered-content">
+    <div class="white-box">
+        <h1 class="title has-text-primary" *ngIf="isRejected">
+            Your request has been rejected.
+        </h1>
+        <h1 class="title has-text-primary" *ngIf="!isRejected && !isVerified">
+            Your request is awaiting approval
+        </h1>
+        <div *ngIf="isVerified">
+            <h1 class="title has-text-primary">Welcome to ETF quiz</h1>
+            <h1 class="title has-text-primary">Game of the day</h1>
+            <div class="user-card" *ngIf="gameOfDay && !hasPlayed">
+                <div class="user-field">Game of the day</div>
+                <button *ngIf="played === null" style="float: right" class="button is-success has-text-white" (click)="onPlayGameButtonClicked()">Play</button>
+                <button *ngIf="played !== null && played !== 'goblet'" style="float: right" class="button is-success has-text-white" (click)="onPlayGameButtonClicked()">Resume</button>
+                <button *ngIf="played === 'goblet'" style="float: right" class="button is-success has-text-white">Finised</button>
+                <div class="user-field">Num of players: {{gameOfDay.numOfPlayers}}</div>
+            </div>
+            <div class="user-card" *ngIf="gameOfDay && hasPlayed">
+                You've already played game of the day!
+            </div>
+            <div class="user-card" *ngIf="!gameOfDay">
+                Game of the day is not set.
+            </div>
+            <h1 class="title has-text-primary">Top 10 players</h1>
+            <div class="user-card" *ngFor="let user of users">
+                <div class="user-field">{{user.name}} {{user.lastName}}</div>
+                <img class="user-avatar" style="float: right" *ngIf="user.imgPath" src="http://localhost:3000/uploads/{{user.imgPath}}" />
+                <div class="user-field">{{user.profession}}</div>
+                <div class="user-field">Score: {{user.score}}</div>
+            </div>
+            <h1 *ngIf="shouldDisplayMeBellow" class="title has-text-primary">Me:</h1>
+            <div class="user-card" *ngIf="shouldDisplayMeBellow">
+                <div class="user-field">{{user.name}} {{user.lastName}}</div>
+                <img class="user-avatar" style="float: right" *ngIf="user.imgPath" src="http://localhost:3000/uploads/{{user.imgPath}}" />
+                <div class="user-field">{{user.profession}}</div>
+                <div class="user-field">Score: {{user.score}}</div>
+            </div>
+            <h1 class="title has-text-primary">Games in last 10 days</h1>
+            <div class="user-card" *ngFor="let myGame of myGames">
+                <div class="user-field">Date: {{myGame.date}}</div>
+                <div class="user-field">Score: {{myGame.score}}</div>
+                <div *ngIf="myGame.played !== 'goblet'" class="user-field">Game not finished</div>
+            </div>
+            <div *ngIf="myGames.length < 1">You didn't play ETF quiz in the last 10 days</div>
+        </div>
+    </div>
+</div>

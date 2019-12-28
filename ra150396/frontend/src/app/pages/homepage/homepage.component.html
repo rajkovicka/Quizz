@@ -1,0 +1,29 @@
+<div>
+    <app-header></app-header>
+    <div class="centered-content">
+        <div class="white-box">
+            <h1 *ngIf="top.day.length > 0" class="title has-text-primary">Top players in last 20 days</h1>
+            <div *ngIf="top.day.length > 0">
+                <div class="user-card" *ngFor="let user of top.day; let i = index" [attr.data-index]="i">
+                    <div>{{i+1}}</div>
+                    <div class="user-field">{{user.name}} {{user.lastName}}</div>
+                    <img class="user-avatar" style="float: right; margin-top: -20px" *ngIf="user.imgPath" src="http://localhost:3000/uploads/{{user.imgPath}}" />
+                    <div class="user-field">Score: {{user.score}}</div>
+                </div>
+            </div>
+            <h1 *ngIf="top.month.length > 0" class="title has-text-primary">Top players in current month</h1>
+            <div *ngIf="top.month.length > 0">
+                <div class="user-card" *ngFor="let u of top.month; let i = index" [attr.data-index]="i">
+                    <div>{{i+1}}</div>
+                    <div class="user-field">{{u.name}} {{u.lastName}}</div>
+                    <img class="user-avatar" style="float: right; margin-top: -20px" *ngIf="u.imgPath" src="http://localhost:3000/uploads/{{u.imgPath}}" />
+                    <div class="user-field">Score: {{u.score}}</div>
+                </div>
+            </div>
+            <h1 *ngIf="top.month.length < 1 && top.day.length < 1" class="title has-text-primary">
+                There are no results in the past period, signup and play the quiz!
+            </h1>
+        </div>
+    </div>
+    <app-footer></app-footer>
+</div>

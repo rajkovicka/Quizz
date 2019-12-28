@@ -1,0 +1,340 @@
+<div class="centered-content">
+    <div class="white-box">
+        <h1 class="title has-text-primary">Unknown geography terms</h1>
+        <div class="field">
+            <div class="error-message">{{requestsError}}</div>
+        </div>
+        <div class="user-card" *ngFor="let request of requests">
+            <div class="user-field">Type: {{request.type}}</div>
+            <div class="user-field">Value: {{request.value}}</div>
+            <button style="float: right" class="button is-success has-text-white" (click)="onVerifyButtonClicked(request._id, request._userId)">Verify</button>
+            <button style="float: right" class="button is-success has-text-white"(click)="onRejectButtonClicked(request._id)">Reject</button>
+        </div>
+        <div *ngIf="requests.length < 1" class="field">
+            <div>There are no unknown geography terms.</div>
+        </div>
+        <h1 class="title has-text-primary">Add new game set</h1>
+        <div class="field">
+            <h4 class="has-text-primary">Select game type :</h4>
+            <p class="control">
+                <select [(ngModel)]="gameType" class="input has-background-light">
+                    <option value="null" selected disabled>Game Type</option>
+                    <option value="anagram">Anagram</option>
+                    <option value="game5x5">Game 5x5</option>
+                    <option value="goblet">Goblet</option>
+                </select>
+            </p>
+            <div class="success-message">{{successMessage}}</div>
+        </div>
+        <div *ngIf="gameType === 'anagram'">
+            <h3 class="title has-text-primary">Add new anagram</h3>
+            <div class="field">
+                <div class="error-message">{{anagramError}}</div>
+                <p class="control has-icons-left has-icons-right">
+                    <input [(ngModel)]="question" type="text" placeholder="Question" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-signature"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                    <input [(ngModel)]="answer" type="text" placeholder="Answer" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control is-pulled-right">
+                    <button class="button is-success has-text-white" (click)="onAddNewAnagram()">
+                        Add Anagram
+                    </button>
+                </p>
+            </div>
+        </div>
+        <div *ngIf="gameType === 'game5x5'">
+            <h3 class="title has-text-primary">Add new 5x5 game</h3>
+            <div class="field">
+                <div class="error-message">{{game5x5error}}</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Word {{i}}" [(ngModel)]="words[0]" value="{{words[0]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Word {{i}}" [(ngModel)]="words[1]" value="{{words[1]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Word {{i}}" [(ngModel)]="words[2]" value="{{words[2]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Word {{i}}" [(ngModel)]="words[3]" value="{{words[3]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Word {{i}}" [(ngModel)]="words[4]" value="{{words[4]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control is-pulled-right">
+                    <button class="button is-success has-text-white" (click)="onAdd5x5Game()">
+                        Add Game 5x5
+                    </button>
+                </p>
+            </div>
+        </div>
+        <div *ngIf="gameType === 'goblet'">
+            <h3 class="title has-text-primary">Add new goblet</h3>
+            <div class="field">
+                <div class="error-message">{{gobletError}}</div>
+                <div>1:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 1" [(ngModel)]="questions[0]" value="{{questions[0]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 1" [(ngModel)]="answers[0]" value="{{answers[0]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <div>2:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 2" [(ngModel)]="questions[1]" value="{{questions[1]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 2" [(ngModel)]="answers[1]" value="{{answers[1]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <div>3:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 3" [(ngModel)]="questions[2]" value="{{questions[2]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 3" [(ngModel)]="answers[2]" value="{{answers[2]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <div>4:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 4" [(ngModel)]="questions[3]" value="{{questions[3]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 4" [(ngModel)]="answers[3]" value="{{answers[3]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <div>5:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 5" [(ngModel)]="questions[4]" value="{{questions[4]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 5" [(ngModel)]="answers[4]" value="{{answers[4]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <div>6:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 6" [(ngModel)]="questions[5]" value="{{questions[5]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 6" [(ngModel)]="answers[5]" value="{{answers[5]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <div>7:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 7" [(ngModel)]="questions[6]" value="{{questions[6]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 7" [(ngModel)]="answers[6]" value="{{answers[6]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <div>8:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 8" [(ngModel)]="questions[7]" value="{{questions[7]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 8" [(ngModel)]="answers[7]" value="{{answers[7]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <div>9:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 9" [(ngModel)]="questions[8]" value="{{questions[8]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 9" [(ngModel)]="answers[8]" value="{{answers[8]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <div>10:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 10" [(ngModel)]="questions[9]" value="{{questions[9]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 10" [(ngModel)]="answers[9]" value="{{answers[9]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <div>11:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 11" [(ngModel)]="questions[10]" value="{{questions[10]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 11" [(ngModel)]="answers[10]" value="{{answers[10]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <div>12:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 12" [(ngModel)]="questions[11]" value="{{questions[11]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 12" [(ngModel)]="answers[11]" value="{{answers[11]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <div>13:</div>
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Question 13" [(ngModel)]="questions[12]" value="{{questions[12]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control has-icons-left has-icons-right">
+                        <input placeholder="Answer 13" [(ngModel)]="answers[12]" value="{{answers[12]}}" type="text" class="input has-background-light">
+                    <span class="icon is-small is-left">
+                        <i class="fas fa-user-friends"></i>
+                    </span>
+                </p>
+            </div>
+            <div class="field">
+                <p class="control is-pulled-right">
+                    <button class="button is-success has-text-white" (click)="onAddGoblet()">
+                        Add Goblet
+                    </button>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

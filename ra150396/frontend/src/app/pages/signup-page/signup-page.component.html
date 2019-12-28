@@ -1,0 +1,121 @@
+<app-header></app-header>
+<div class="centered-content">
+    <div class="white-box">
+        <h1 class="title has-text-primary">Sign up</h1>
+        <div class="error-message">{{serverError}}</div>
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+                <input [(ngModel)]="user.name" type="text" placeholder="Name" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-signature"></i>
+                </span>
+            </p>
+            <div class="error-message">{{formErrors.name}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+                <input [(ngModel)]="user.lastName" type="text" placeholder="LastName" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-user-friends"></i>
+                </span>
+            </p>
+            <div class="error-message">{{formErrors.lastName}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+                <input [(ngModel)]="user.email" type="email" placeholder="Email" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                </span>
+            </p>
+            <div class="error-message">{{formErrors.email}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+                <input [(ngModel)]="user.profession" type="text" placeholder="Profession" class="input has-background-light">
+                 <span class="icon is-small is-left">
+                    <i class="fas fa-user-tie"></i>
+                 </span>
+            </p>
+            <div class="error-message">{{formErrors.profession}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input [(ngModel)]="user.username" type="text" placeholder="Username" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-user"></i>
+                </span>
+            </p>
+            <div class="error-message">{{formErrors.username}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input [(ngModel)]="user.password" type="password" placeholder="Pasword" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-key"></i>
+                </span>
+            </p>
+            <div class="error-message">{{formErrors.password}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input [(ngModel)]="user.passwordConfirmation" type="password" placeholder="Confirm Password" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-key"></i>
+                </span>
+            </p>
+            <div class="error-message">{{formErrors.passwordConfirmation}}</div>
+        </div>
+        <div class="field">
+            <p class="control">
+                <select [(ngModel)]="user.gender" class="input has-background-light">
+                    <option value="null" selected disabled>Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </p>
+            <div class="error-message">{{formErrors.gender}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input [(ngModel)]="user.jmbg" type="text" placeholder="JMBG" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-id-card-alt"></i>
+                </span>
+            </p>
+            <div class="error-message">{{formErrors.jmbg}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input [(ngModel)]="user.securityQuestion" type="text" placeholder="Security Question" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-question"></i>
+                </span>
+            </p>
+            <div class="error-message">{{formErrors.securityQuestion}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input [(ngModel)]="user.securityAnswer" type="text" placeholder="Security Answer" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </p>
+            <div class="error-message">{{formErrors.securityAnswer}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input type="file" name="file" (change)="uploadPic($event)" />
+            </p>
+            <div class="error-message">{{formErrors.imgPath}}</div>
+        </div>
+        <div class="field">
+            <p class="control is-pulled-right">
+                <button class="button is-success has-text-white" (click)="onSignupButtonClicked()">
+                    Sign up
+                </button>
+            </p>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

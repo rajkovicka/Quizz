@@ -1,0 +1,74 @@
+<app-header></app-header>
+<div class="centered-content">
+    <div class="white-box">
+        <h1 class="title has-text-primary">Goblet</h1>
+        <div *ngIf="hasPlayed">
+            You've already played goblet today.
+        </div>
+        <div *ngIf="noGameToday">
+            Game of the day is not set.
+        </div>
+        <div *ngIf="!hasPlayed">
+                <div style="width: 100%">
+                    <div class="field" style="margin-bottom: 5px; min-height: 20px; display: block">
+                        <p class="control is-pulled-right">
+                            <span>Time: {{timeLeft}}</span> 
+                        </p>
+                    </div>
+                    <div *ngIf="!isGameEnabled && !isGameFinished" class="field" style="margin-bottom: 20px; min-height: 20px; display: block">
+                        <p class="control is-pulled-right">
+                            <button class="button is-success has-text-white" (click)='startTimer()'>
+                                Start game
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div *ngIf="isGameEnabled && !isGameFinished">
+                    <div class="field">
+                        <div>Question: {{questions[currentQuestion]}}</div>
+                    </div>
+                    <div class="field">
+                        <div class="error-message">{{error}}</div>
+                    </div>
+                    <div class="field">
+                        <p *ngIf="!isGameFinished" class="control has-icons-left">
+                            <input [(ngModel)]="answer" type="text" placeholder="Answer" class="input has-background-light">
+                            <span class="icon is-small is-left">
+                                <i class="fas fa-lock"></i>
+                            </span>
+                        </p>
+                        <div *ngIf="isGameFinished" class="control has-icons-left">
+                            <div>{{answer}}</div>  
+                        </div>
+                    </div>
+                    <div class="field" style="margin-bottom: 20px; min-height: 20px; display: block">
+                        <p class="control is-pulled-right">
+                            <button class="button is-success has-text-white" (click)='onAnswerSubmit()'>
+                                Answer
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div>
+                    <div class="centered-content" style="height: 30px; min-height: 0vh" *ngFor="let gobletRow of goblet">
+                        <div class="charbox" *ngFor="let charBox of gobletRow.word">
+                            <div *ngIf="charBox.isVisible">{{charBox.char}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div style="margin-bottom: 30px"></div>
+                <div class="field">
+                    <div class="success-message">{{success}}</div>
+                </div>
+                <div *ngIf="isGameFinished || isGameEnabled" style="width: 100%; margin: 10px 0; min-height: 20px;">
+                    Your score is: {{score}}
+                </div>
+        </div>
+        <div *ngIf="isGameFinished || hasPlayed" style="width: 100%; margin: 10px 0; min-height: 20px;">
+            <button class="button is-success has-text-white" (click)="nextGame()">
+                Score
+            </button>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

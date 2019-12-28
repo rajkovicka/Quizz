@@ -1,0 +1,103 @@
+<app-header></app-header>
+<div class="centered-content">
+    <div class="white-box">
+        <h1 class="title has-text-primary">Change game of the day</h1>
+        <div class="field">
+            <div class="error-message">{{selectGameError}}</div>
+        </div>
+        <div class="field">
+            <h4 class="has-text-primary">Select game type :</h4>
+            <p class="control">
+                <select (change)="onGameTypeChanged()" [(ngModel)]="gameType" class="input has-background-light">
+                    <option value="null" selected disabled>Game Type</option>
+                    <option value="anagram">Anagram</option>
+                    <option value="game5x5">Game 5x5</option>
+                    <option value="goblet">Goblet</option>
+                </select>
+            </p>
+        </div>
+        <div *ngIf="gameType === 'anagram' || gameType === 'goblet' || gameType === 'game5x5'">
+            <div class="field" style="height: 50px">
+                <p class="control">
+                    <button style="float: right" class="button is-success has-text-white"(click)="onGetGamesButtonClicked()">Get Games</button>
+                </p>
+            </div>
+        </div>
+        <div *ngIf="gameType === 'anagram'">
+            <div *ngFor="let game of gamesByType">
+                <div class="user-card">
+                    <input style="display: none" value="{{game._id}}" #gameId>
+                    <div class="user-field">
+                        <span>Anagram Question : {{ game.question }}</span>
+                    </div>
+                    <button style="float: right" class="button is-success has-text-white"(click)="onSetAnagram(gameId.value)">Set Game</button>
+                    <div class="user-field">
+                        <span>Anagram Answer : {{ game.answer }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="gameType === 'game5x5' || gameType === 'goblet'">
+            <div *ngFor="let game of gamesByType">
+                <div class="user-card">
+                    <input style="display: none" value="{{game._id}}" #gameId>
+                    <div class="user-field" style="width: 70%">
+                        <span>ID: {{ game._id }}</span>
+                    </div>
+                    <button style="float: right" class="button is-success has-text-white"(click)="onSetGame(gameId.value, gameType)">Set Game</button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="gameDate === null">
+            <div class="field">
+                <h4 class="has-text-primary">Select a date from the future :</h4>
+                <p class="control">
+                    <input [(ngModel)]="day" type="number" placeholder="Day" class="input has-background-light">
+                </p>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <input [(ngModel)]="month" type="number" placeholder="Month" class="input has-background-light">
+                </p>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <input [(ngModel)]="year" type="number" placeholder="Year" class="input has-background-light">
+                </p>
+            </div>
+            <div *ngIf="day !== null && month !== null && year !== null" class="field">
+                <p class="control">
+                    <button style="float: right" class="button is-success has-text-white"(click)="onSetDate()">Set date</button>
+                </p>
+            </div>
+            <div class="field">
+                <div class="error-message">{{dateError}}</div>
+            </div>
+        </div>
+        <h1 class="title has-text-primary" style="font-size: 12px">Selected ids for game of the day</h1>
+        <div class="user-card" *ngIf="gameOfDay">
+            <div class="user-field">
+                <span>Anagram ID : {{ gameOfDay._anagramGameId }}</span>
+            </div>
+            <div class="user-field">
+                <span>Game 5x5 ID : {{ gameOfDay._game5x5GameId }}</span>
+            </div>
+            <div class="user-field">
+                <span>Goblet ID : {{ gameOfDay._gobletGameId }}</span>
+            </div>
+            <div class="user-field">
+                <span>Date : {{ gameOfDay.date }}</span>
+            </div>
+        </div>
+        <div class="field">
+            <p class="control">
+                <button style="float: right; margin-top: 15px;" class="button is-success has-text-white"(click)="onSetGameOfDay()">Set game of day</button>
+            </p>
+        </div>
+        <div class="field">
+            <div class="success-message">{{successMessage}}</div>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
+    

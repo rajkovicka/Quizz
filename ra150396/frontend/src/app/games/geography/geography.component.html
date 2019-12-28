@@ -1,0 +1,134 @@
+<app-header></app-header>
+<div class="centered-content">
+    <div class="white-box">
+        <h1 class="title has-text-primary">Fun Geography</h1>
+        <div *ngIf="hasPlayed">
+            You've already played fun geography today
+        </div>
+        <div *ngIf="noGameToday">
+            Game of the day is not set.
+        </div>
+        <div *ngIf="!hasPlayed">
+                <div style="width: 100%">
+                    <div *ngIf="!startLetter && !isGameFinished" class="field" style="margin-bottom: 20px; min-height: 20px; display: block">
+                        <p class="control is-pulled-right">
+                            <button class="button is-success has-text-white" (click)='startTimer()'>
+                                Get letter
+                            </button>
+                        </p>
+                    </div>
+                    <div *ngIf="startLetter && !gotLetter && !isGameFinished" class="field" style="margin-bottom: 20px; min-height: 20px; display: block">
+                        <p class="control is-pulled-right">
+                            <button class="button is-success has-text-white" (click)='pauseTimer()'>
+                                Stop
+                            </button>
+                        </p>
+                    </div>
+                </div>
+                <div *ngIf="gotLetter && !isGameFinished" style="width: 100%">
+                    <div class="field" style="margin-bottom: 5px; min-height: 20px; display: block">
+                        <p class="control is-pulled-right">
+                            <span>Time: {{timeLeft}}</span> 
+                        </p>
+                    </div>
+                </div>
+                <div *ngIf="(startLetter || gotLetter)">
+                    <div class="field">
+                        <div class="error-message">{{error}}</div>
+                    </div>
+                    <div class="field">
+                        <div class="error-message">{{success}}</div>
+                    </div>
+                    <div class="centered-content" style="min-height: 0vh">
+                        Letter : 
+                        <div class="charbox">
+                            <div>{{letter}}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="field" style="margin-top: 20px">
+                    <p *ngIf="isGameEnabled && !isGameFinished" class="control has-icons-left">
+                        <input [(ngModel)]="country" type="text" placeholder="Country" class="input has-background-light">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p *ngIf="isGameEnabled && !isGameFinished" class="control has-icons-left">
+                        <input [(ngModel)]="city" type="text" placeholder="City" class="input has-background-light">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p *ngIf="isGameEnabled && !isGameFinished" class="control has-icons-left">
+                        <input [(ngModel)]="lake" type="text" placeholder="Lake" class="input has-background-light">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p *ngIf="isGameEnabled && !isGameFinished" class="control has-icons-left">
+                        <input [(ngModel)]="mountain" type="text" placeholder="Mountain" class="input has-background-light">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p *ngIf="isGameEnabled && !isGameFinished" class="control has-icons-left">
+                        <input [(ngModel)]="river" type="text" placeholder="River" class="input has-background-light">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p *ngIf="isGameEnabled && !isGameFinished" class="control has-icons-left">
+                        <input [(ngModel)]="animal" type="text" placeholder="Animal" class="input has-background-light">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p *ngIf="isGameEnabled && !isGameFinished" class="control has-icons-left">
+                        <input [(ngModel)]="plant" type="text" placeholder="Plant" class="input has-background-light">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field">
+                    <p *ngIf="isGameEnabled && !isGameFinished" class="control has-icons-left">
+                        <input [(ngModel)]="group" type="text" placeholder="Group" class="input has-background-light">
+                        <span class="icon is-small is-left">
+                            <i class="fas fa-lock"></i>
+                        </span>
+                    </p>
+                </div>
+                <div class="field" style="min-height: 20px; display: inline-block; float: right; margin-left: 10px">
+                    <p *ngIf="isGameEnabled && !isGameFinished" class="control is-pulled-right">
+                        <button class="button is-success has-text-white" (click)="clearTimer()">
+                            Submit
+                        </button>
+                    </p>
+                </div>
+                <div *ngIf="isGameEnabled || isGameFinished" style="width: 100%; margin: 10px 0; min-height: 20px;">
+                    Your score is: {{score}}
+                </div>
+        </div>
+        <div *ngIf="sGameFinished" style="width: 100%; margin: 10px 0; min-height: 20px;">
+            {{supervised}}
+        </div>
+        <div *ngIf="isGameFinished || hasPlayed" style="width: 100%; margin: 10px 0; min-height: 20px;">
+            <button class="button is-success has-text-white" (click)="nextGame()">
+                Next game
+            </button>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>

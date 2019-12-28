@@ -1,0 +1,119 @@
+<app-header></app-header>
+<div class="centered-content">
+    <div class="white-box" *ngIf="step===1">
+        <h1 class="title has-text-primary">Login</h1>
+        <div class="field">
+            <div class="success-message">{{changedPasswordSuccess}}</div>
+        </div>
+        <div class="field">
+            <div class="error-message">{{loginErrorMessage}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+                <input [(ngModel)]="user.email" type="email" placeholder="Email" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                </span>
+            </p>
+            <div class="error-message">{{loginFormErrors.email}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input [(ngModel)]="user.password" type="password" placeholder="Password" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </p>
+            <div class="error-message">{{loginFormErrors.password}}</div>
+        </div>
+        <span class="is-pulled-right" (click)="onForgotPasswordButtonClicked()">Forgot Password</span>
+        <div class="field">
+            <p class="control is-pulled-right">
+                <button class="button is-success has-text-white" (click)="onLoginButtonClicked()">
+                    Login
+                </button>
+            </p>
+        </div>
+    </div>
+    <div class="white-box" *ngIf="step===2">
+        <h1 class="title has-text-primary">Enter your credentials</h1>
+        <div class="field">
+            <div class="error-message">{{forgotPasswordErrorMessage}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left has-icons-right">
+                <input [(ngModel)]="user.username" type="text" placeholder="Usename" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-envelope"></i>
+                </span>
+            </p>
+            <div class="error-message">{{loginFormErrors.username}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input [(ngModel)]="user.jmbg" type="text" placeholder="JMBG" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </p>
+            <div class="error-message">{{loginFormErrors.jmbg}}</div>
+        </div>
+        <div class="field">
+            <p class="control is-pulled-right">
+                <button class="button is-success has-text-white" (click)="onSubmitButtonClicked()">
+                    Submit
+                </button>
+            </p>
+        </div>
+    </div>
+    <div class="white-box" *ngIf="step===3">
+        <h1 class="title has-text-primary">Security Question</h1>
+        <div class="field">
+            <div class="error-message">{{wrongAnswerMessage}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <span>{{securityQuestion}}</span>
+            </p>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input [(ngModel)]="user.securityAnswer" type="text" placeholder="Answer" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </p>
+            <div class="error-message">{{loginFormErrors.securityAnswer}}</div>
+        </div>
+        <div class="field">
+            <p class="control is-pulled-right">
+                <button class="button is-success has-text-white" (click)="onAnswerButtonClicked()">
+                    Answer
+                </button>
+            </p>
+        </div>
+    </div>
+    <div class="white-box" *ngIf="step===4">
+        <h1 class="title has-text-primary">Enter new password</h1>
+        <div class="field">
+            <div class="error-message">{{newPasswordError}}</div>
+        </div>
+        <div class="field">
+            <p class="control has-icons-left">
+                <input [(ngModel)]="user.password" type="password" placeholder="New Password" class="input has-background-light">
+                <span class="icon is-small is-left">
+                    <i class="fas fa-lock"></i>
+                </span>
+            </p>
+            <div class="error-message">{{loginFormErrors.password}}</div>
+        </div>
+        <div class="field">
+            <p class="control is-pulled-right">
+                <button class="button is-success has-text-white" (click)="onChangePasswordButtonClicked()">
+                    Change Password
+                </button>
+            </p>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
